@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Counting</title>
+
+  <style> /* CSS comment */
+    body { max-width: 440px; }
+    #inp { width: 50px }
+    #out {
+        font-size: 20px;
+        background: red;
+        color: blue;
+        text-align: center;
+        padding: 15px;
+    }
+  </style>
+</head>
+
+<body>   <!-- HTML comment: Modify all items marked xxx -->
+
+<h2 id=title>Counting Squares of Numbers</h2>
+Number :  
+<input type=number id=inp value=0 onChange="square(Number(inp.value))">
+&emsp;
+<input type=button value="Take Square" onClick="square(Number(inp.value)+1)">
+<p id=out>This text is not shown. Why?</p>
+
+<hr />
+<b>Sample code</b>
+<pre id=sample>This text is not shown. Why?</pre>
+
+<hr />
+<p>Ref: <a href="https://www.w3schools.com/js/" 
+   target="NewTab">JS Tutorial</a>
+</p>
+
+<script>
+"use strict";
+// JavaScript comment
+function square(inputNumber) {
+    let c = inputNumber*inputNumber;
+    console.log("counter = "+c);
+    out.innerText = c;
+    inp.value = inputNumber;
+}
+    //global variable id is the HTML element with id 
+    //const title = document.getElementById("title");
+    sample.innerText = square.toString();
+    out.innerText = 0; square(Number(inp.value));
+</script>
+
+</body>
+</html>
