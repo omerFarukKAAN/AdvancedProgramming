@@ -4,4 +4,4 @@
 
 [Counting](./Counting.html)
 
-[Cw2 - Temperature Convertor](./CW2/TemperatureConvertor.html)
+[CW2 - Temperature Convertor](./CW2/TemperatureConvertor.html)
