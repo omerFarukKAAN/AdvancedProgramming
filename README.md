@@ -8,4 +8,4 @@
 
 [CW2 - Temperature Convertor](./Classworks/CW2/TemperatureConvertor.html)
 
-[CW3 - Data Analysis](./Classworks/CW2/c4_data.html)
+[CW3 - Data Analysis](./Classworks/CW3/c4_data.html)
