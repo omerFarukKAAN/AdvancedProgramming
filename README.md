@@ -2,7 +2,7 @@
 
 ## *CLASSWORKS*
 
-![CW1 - Pie Chart](./Classworks/CW1/PieChart.png)
+[CW1 - Pie Chart](./Classworks/CW1/PieChart.png)
 
 [CW2 - Counting](./Classworks/CW2/Counting.html)
 
