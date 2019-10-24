@@ -9,8 +9,5 @@
 [CW2 - Temperature Convertor](./Classworks/CW2/TemperatureConvertor.html)
 
 [CW3 - Data Analysis](./Classworks/CW3/c4_data.html)
-<<<<<<< HEAD
 
 [CW4 - Courses](./Classworks/CW4/Courses.html)
-=======
->>>>>>> master
