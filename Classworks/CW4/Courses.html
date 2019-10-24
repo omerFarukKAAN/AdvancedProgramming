@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CW4</title>
+</head>
+
+<body>
+    <h2 id="title">Courses</h2>
+    <hr>
+    <input type="text" id="searchText">
+    <button onClick="print()">Get Course</button>
+    <p id="outDate">Date : </p>
+    <p id="outTime">Time : </p>
+    <p id="outClasses">Classes : </p>
+    <hr>
+    <b>Sample Code</b>
+    <pre id="sample"></pre>
+    <hr>
+
+    <script>
+        class Course {
+            constructor(id, time, date, classes) {
+                this.id = id;
+                this.time = time;
+                this.date = date;
+                this.classes = classes;
+            }
+        }
+        function fetchURL() {
+            fetch("https://maeyler.github.io/JS/data/Courses.txt")
+                .then(res => res.text())
+                .then(res => [
+                    storeCourses(res)
+                ])
+        }
+        let courses = [];
+        function storeCourses(txt) {
+            let lines = txt.split('\n');
+            for (let i = 0; i < lines.length; i++) {
+                let info = lines[i].split("\t");
+                let classes = [];
+                for (let j = 3; j < info.length; j++) {
+                    classes.push(info[j]);
+                }
+                let newCourse = new Course(info[0], info[1], info[2], classes);
+                courses.push(newCourse);
+            }
+        }
+        function print() {
+            let search = document.getElementById("searchText").value;
+            for (let i = 0; i < courses.length; i++) {
+                if (courses[i].id == search) {
+                    outDate.innerHTML = "Date : " + courses[i].date
+                    outTime.innerHTML = "Time : " + courses[i].time
+                    outClasses.innerHTML = "Classes : "
+                    for (let j = 0; j < courses[i].classes.length; j++) {
+                        outClasses.innerHTML += courses[i].classes[j] + " ";
+                    }
+                }
+            }
+        }
+        sample.innerText = Course.toString()+"\n"+storeCourses.toString()+"\n"+print.toString();
+        fetchURL();
+    </script>
+</body>
+
+</html>
