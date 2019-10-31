@@ -5,6 +5,9 @@ class Course {
         this.date = date;
         this.classes = classes;
     }
+    toString () {
+        return this.id;
+    }
 }
 
 class Student {
@@ -13,6 +16,9 @@ class Student {
         this.name = name;
         this.gpa = gpa;
         this.courses = courses;
+    }
+    toString () {
+        return this.name+'';
     }
 }
 
