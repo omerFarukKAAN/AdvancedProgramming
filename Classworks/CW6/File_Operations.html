@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>File Operations</title>
+</head>
+
+<script>
+    "use strict";
+    let fetchText;
+    function readText() {
+        url = document.getElementById("urlInput").value;
+        fetch(url)
+            .then(response => response.text())
+            .then(response => getText(response));
+    }
+
+    function getText(txt) {
+        fetchText = txt;
+    }
+
+    function isText(f) {
+        console.assert(f instanceof File);
+        return f.type.startsWith("text") || f.name.endsWith(".md")
+            || f.name.endsWith(".js") || f.name.endsWith(".java");
+    }
+
+    function fileSelect(t) { //target is the button
+        readText();
+        let isFind = false;
+        let fileNames = [];
+
+        for (let file of t.files) {
+            fileNames.push(file.name);
+        }
+        out.innerText = "Choose File(s): " + fileNames;
+
+        setTimeout(function () {
+            let findedFileName;
+            function readFile(index) {
+                if (index > t.files.length - 1) {
+                    return;
+                }
+                let reader = new FileReader();
+                let file = t.files[index];
+
+                reader.onload = function (e) {
+                    let localText = e.target.result;
+                    if (localText.replace(/\s/g, '') == fetchText.replace(/\s/g, '')) {
+                        isFind = true;
+                        findedFileName = file.name;
+                        out1.innerText = "Result: " + t.files.length + " items checked, " + findedFileName + " is the same as [" + url + "]";
+                    }
+                    readFile(index + 1);
+                }
+                reader.readAsBinaryString(file);
+            }
+            readFile(0);
+        }, 90);
+        if (isFind == false) {
+            out1.innerText = t.files.length + " items checked, all files different ";
+        }
+    }
+</script>
+<body>
+    <h2 id=title></h2>
+
+    <p>URL: <input id=urlInput value="https://maeyler.github.io/JS/data/Courses.txt" style="width: 300px"></p>
+    <input type=file id=button onChange='fileSelect(this)' multiple />
+    <p>
+        <output id=out>Choose Files: </output><br><br>
+        <output id=out1>Result: </output>
+    </p>
+    <script>
+        title.innerText = document.title;
+        let url = document.getElementById("urlInput").value;
+    </script>
+</body>
+
+</html>
