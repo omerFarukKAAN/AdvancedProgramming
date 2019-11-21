@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="https://maeyler.github.io/305/work/Database.js"></script>
+    <title>Array vs Map</title>
+
+  <style>
+    body { max-width: 450px; }
+    #clock {
+        font-size: 48px;
+        background-color: blue;
+        color: white;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+<h2>Time Measurement</h2>
+
+<h3>Simple Clock</h3>
+<div id="clock">13:02:32</div>
+
+<h3>Set Intersection</h3>
+<button onclick="timingArray(arrayFunction)">Array</button>
+<button onclick="timingMap(mapFunction)">Map</button>
+<p id="out"></p>
+<hr>
+<h3>Sample Code</h3>
+<pre id="sample"></pre>
+<hr>
+
+<script>
+"use strict";
+// Simple Clock
+var hm, time;
+function twoDigits(t) {
+    if (t>9) return ""+t;
+    return "0"+t;
+}
+function setHourMin() {
+    const d = new Date();
+    hm = twoDigits(d.getHours())+":"
+        +twoDigits(d.getMinutes());
+}
+function count() {
+    const d = new Date();
+    let sec = twoDigits(d.getSeconds());
+    if (sec == "00") setHourMin();
+    clock.innerText = hm+":"+sec;
+    time = setTimeout(count, 1000);
+}
+// Make array and map
+const url = "https://maeyler.github.io/JS/data/"
+const array = []     // Student ID's
+const map = new Map() // Students
+const rndArray = [] // Randomly student ID's array
+function readData(file) {
+    console.log("readData "+file)
+    fetch(url+file)
+        .then(r => r.text())
+        .then(addStudents)
+        .catch(console.error)
+}
+//Creating 10.0000 randomly 9-digit number array
+function createRandomArray () {
+    for (let i = 0; i<10000; i++) {
+        rndArray.push(Math.floor(100000000 + Math.random() * 900000000) + '');
+    }
+    rndArray.push('116691080')
+    rndArray.push('215170000')
+}
+function parseStudent(line) {
+    let [id, name, gpa, ...L] = line.split('\t')
+    let std = new Student(id, name, gpa)
+    std.courses = L; return std
+}
+function addStudents(txt) {
+    let msg = "Data contains "
+         + txt.length+" chars, "
+    let a = txt.split('\n')
+    msg += a.length+" lines <br>"
+    for (let s of a) {
+      let std = parseStudent(s)
+      array.push(std.id); map.set(std.id, std);
+    }
+    msg += array.length+" students in array, "
+    msg += map.size+" students in map <br>"
+    out.innerHTML += msg
+}
+// Set Intersection & timing
+function arrayFunction(a, b) { //array
+    let count = 0
+    for (var x of a)
+      if (b.includes(x)) count++
+    return count
+}
+function mapFunction(a, b) { //map
+    let count = 0
+    for (let x of a)
+      if (b.has(x)) count++
+    return count
+}
+function timingArray(f) {
+    let t = performance.now() //more accurate than Date.now()
+    let x = f(rndArray, array)   //calculate intersection by itself
+    t = performance.now() - t
+    let s = f.name+": "+t.toPrecision(3)+" msec -- size:"+x
+    out.innerHTML += "<br>"+s; console.log(s)
+}
+function timingMap(f) {
+    let t = performance.now() //more accurate than Date.now()
+    let x = f(rndArray, map)   //calculate intersection by itself
+    t = performance.now() - t
+    let s = f.name+": "+t.toPrecision(3)+" msec -- size:"+x
+    out.innerHTML += "<br>"+s; console.log(s)
+}
+    sample.innerText = arrayFunction+'\n'+mapFunction
+    setHourMin(); count()
+    readData("Students.txt")
+    createRandomArray()
+</script>
+</body>
+</html>

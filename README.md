@@ -15,3 +15,5 @@
 [CW5 - Eloquent Javascript](./Classworks/CW5/Eloquent_JS.html)
 
 [CW6 - File Operations](./Classworks/CW6/File_Operations.html)
+
+[CW7 - Array vs Map](./Classworks/CW7/Array_vs_Map.html)
