@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ömer Faruk KAAN</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" sizes="192x192" href="images/icon.PNG">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('sw.js')
+                .then((reg) => { console.log('SW Registered', reg) })
+                .catch(console.log)
+        }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat');
+        h1 {
+            padding: 0;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .glitch {
+            position: relative;
+            color: black;
+            font-size: 1em;
+            letter-spacing: .5em;
+            animation: glitch-skew 1s infinite linear alternate-reverse;
+        }
+
+        .glitch:before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            left: 2px;
+            text-shadow: -2px 0 red;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+
+        .glitch:after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            left: -2px;
+            text-shadow: -2px 0 blue, 2px 2px white;
+            animation: glitch-anim2 1s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim {
+            0% {
+                clip: rect(96px, 9999px, 9px, 0);
+                transform: skew(0.77deg);
+            }
+
+            20% {
+                clip: rect(13px, 9999px, 48px, 0);
+                transform: skew(0.43deg);
+            }
+
+            40% {
+                clip: rect(42px, 9999px, 11px, 0);
+                transform: skew(0.68deg);
+            }
+
+            60% {
+                clip: rect(86px, 9999px, 65px, 0);
+                transform: skew(0.03deg);
+            }
+
+            80% {
+                clip: rect(42px, 9999px, 33px, 0);
+                transform: skew(0.87deg);
+            }
+
+            100% {
+                clip: rect(57px, 9999px, 63px, 0);
+                transform: skew(0.21deg);
+            }
+        }
+
+        @keyframes glitch-anim2 {
+            0% {
+                clip: rect(68px, 9999px, 75px, 0);
+                transform: skew(0.07deg);
+            }
+
+            20% {
+                clip: rect(43px, 9999px, 29px, 0);
+                transform: skew(0.11deg);
+            }
+
+            40% {
+                clip: rect(30px, 9999px, 57px, 0);
+                transform: skew(0.16deg);
+            }
+
+            60% {
+                clip: rect(16px, 9999px, 76px, 0);
+                transform: skew(0.74deg);
+            }
+
+            80% {
+                clip: rect(34px, 9999px, 21px, 0);
+                transform: skew(0.5deg);
+            }
+
+            100% {
+                clip: rect(21px, 9999px, 92px, 0);
+                transform: skew(0.4deg);
+            }
+        }
+
+        @keyframes glitch-skew {
+            0% {
+                transform: skew(-2deg);
+            }
+
+            10% {
+                transform: skew(-2deg);
+            }
+
+            20% {
+                transform: skew(1deg);
+            }
+
+            30% {
+                transform: skew(-3deg);
+            }
+
+            40% {
+                transform: skew(-2deg);
+            }
+
+            50% {
+                transform: skew(-4deg);
+            }
+
+            60% {
+                transform: skew(-3deg);
+            }
+
+            70% {
+                transform: skew(5deg);
+            }
+
+            80% {
+                transform: skew(-1deg);
+            }
+
+            90% {
+                transform: skew(4deg);
+            }
+
+            100% {
+                transform: skew(-4deg);
+            }
+        }
+        body {
+            background-color: #f0da4fda;
+        }
+        ul dt {
+            background: #f0da4f;
+            font-size: 20px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            line-height: 35px;
+            height: 40px;
+            margin: 15px;
+            text-align: center;
+            vertical-align: middle;
+            width: 350px;
+        }
+        ul {
+            border-radius: 20%;
+            background: darkgreen;
+            padding: 15px;
+            width: 420px;
+        }
+        
+        dt:hover {
+            background: yellowgreen;
+            padding:0px;
+            
+        }
+        a:link {
+            color: black;
+            text-decoration: unset;
+        }
+        a:visited {
+            color:black;
+            text-decoration: underline;
+        }
+        a:hover {
+            text-decoration: underline;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div  align="center" style="max-width: 99%; height: auto; ">
+    <h1 class="glitch" data-text="JS by Ö.FARUK KAAN">JS by Ö.FARUK KAAN</h1>
+    <h2 style="color: black; font-family: Montserrat, sans-serif;">ClassWorks</h2>
+    <ul>
+        <dt><p><a target="_self" href="https://omerfarukkaan.github.io/advancedProgramming/Classworks/CW1/PieChart.png">CW1 - Pie Chart</a></p></dt>
+        <dt><p><a target="_self" href="https://omerfarukkaan.github.io/advancedProgramming/Classworks/CW2/Counting.html">CW2 - Counting</a></p></dt>
+        <dt><p><a target="_self" href="https://omerfarukkaan.github.io/advancedProgramming/Classworks/CW2/TemperatureConvertor.html">CW2 - Temperature Convertor</a></p></dt>
+        <dt><p><a target="_self" href="https://omerfarukkaan.github.io/advancedProgramming/Classworks/CW3/c4_data.html">CW3 - Data Analysis</a></p></dt>
+        <dt><p><a target="_self" href="https://omerfarukkaan.github.io/advancedProgramming/Classworks/CW4/Courses.html">CW4 - Courses</a></p></dt>
+        <dt><p><a target="_self" href="https://omerfarukkaan.github.io/advancedProgramming/Classworks/CW5/Eloquent_JS.html">CW5 - Eloquent Javascript</a></p></dt>
+        <dt><p><a target="_self" href="https://omerfarukkaan.github.io/advancedProgramming/Classworks/CW6/File_Operations.html">CW6 - File Operations</a></p></dt>
+        <dt><p><a target="_self" href="https://omerfarukkaan.github.io/advancedProgramming/Classworks/CW7/Array_vs_Map.html">CW7 - Array vs Map</a></p></dt>
+    </ul>
+    <h2 style="color: black; font-family: Montserrat, sans-serif;">HomeWorks</h2>
+    
+    <ul>
+        <dt><p><a target="_self" href="https://omerfarukkaan.github.io/advancedProgramming/Homeworks/HW1/Poisson_Table.html">HW1 -Poisson Table</a></p></dt>
+        <dt><p><a target="_self" href="https://omerfarukkaan.github.io/advancedProgramming/Homeworks/HW2/Database.html">HW2 - StudentDatabase</a></p></dt>
+        <dt><p><a target="_self" href="https://omerfarukkaan.github.io/advancedProgramming/Homeworks/HW3/JS_Animations.html">HW3 - JavaScript Animations</a></p></dt>
+    </ul>
+    <p style="font-size: 20px; color: black; font-family: Montserrat, sans-serif;"><b>GitHub: </b><a target="_self" href="https://github.com/omerfarukkaan/advancedProgramming">My GitHub Repo</a></p>
+</div>        
+    </div>
+</body>
+
+</html>

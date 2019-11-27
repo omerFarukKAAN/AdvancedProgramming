@@ -1,0 +1,13 @@
+{
+    "name": "advancedProgramming by Ö.Faruk KAAN",
+    "start_url": "https://omerfarukkaan.github.io/advancedProgramming/index.html",
+    "display": "standalone",
+    "background_color": "blue",
+    "icons": [
+      {
+        "src": "images/icon.png",
+        "sizes": "192x192",
+        "type": "images/icon.png"
+      }
+    ]
+  }
