@@ -17,3 +17,12 @@
 [CW6 - File Operations](./Classworks/CW6/File_Operations.html)
 
 [CW7 - Array vs Map](./Classworks/CW7/Array_vs_Map.html)
+
+
+## *HOMEWORKS*
+
+[HW1 - Poisson Table](./Homeworks/HW1/Poisson_Table.html)
+
+[HW2 - Student Database](./Homeworks/HW2/Database.html)
+
+[HW3 - JavaScript Animations](./Homeworks/HW3/JS_Animations.html)

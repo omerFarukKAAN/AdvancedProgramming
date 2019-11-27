@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Poisson Table </title>
+
+    <style>
+        body {
+            max-width: 500px;
+        }
+        #sample {
+            overflow-x: auto;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        td {
+            border: 1px solid blue;
+            padding: 5px 5px;
+            text-align: center;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h2 id=title></h2>
+        <div id="container"></div> 
+    </center>
+
+    <hr />
+    <b>Sample Code</b>
+    <pre id=sample></pre>
+    <hr />
+    <p>Ref: <a href="https://www.dummies.com/education/math/business-statistics/how-to-compute-poisson-probabilities/" 
+        target="NewTab">Poisson Probabilities</a>
+     </p>
+
+<script>
+    "use strict";
+
+const L = [0.5, 1, 1.5, 2, 2.5, 3]
+let p = [];
+
+for (let λ of L) p.push(Math.exp(-λ))
+
+let x = 1;
+let lambdaCount = 0;
+
+for (let i = 6; i < 54; i++) {
+    p[i] = p[i - 6] * L[lambdaCount] / x;
+    
+    //Alternative
+    /*let result = Number(p[i - 6] * L[lambdaCount] / x).toString();
+    result = result.slice(0,6);
+    result = parseFloat(result);
+    p[i] = result;*/
+    
+    lambdaCount++;
+    if (lambdaCount == 6) {
+        lambdaCount = 0;
+        x++
+    }
+}
+let html = "<table><tr>"
+function makePoissonTable() {
+    let columnCount = 6;
+    x = 0;
+    html += "<td></td>"
+
+    for (let i = 0; i <= 5; i++) {
+        html += "<td><b>λ = " + L[i] + "</b></td>"
+    }
+    html += "<tr></tr>" + "<td><b>x = " + x + "</b></td>"
+
+    for (let i = 0; i <= p.length - 1; i++) {
+        let number = Number(p[i]).toString();
+        number = number.slice(0, 6)
+        html += "<td>" + number + "</td>"
+
+        let next = i + 1;
+        if (next % columnCount == 0 && next != p.length) {
+            x++;
+            html += "<tr></tr>" + "<td><b>x = "+x+"</b></td>"
+        }
+    }
+    html += "</tr></table>"
+}
+
+    title.innerText = document.title;
+    sample.innerText = makePoissonTable.toString();
+    makePoissonTable();
+    document.getElementById("container").innerHTML = html;
+</script>
+
+</body>
+
+</html>

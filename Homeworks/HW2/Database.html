@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="Database.js"></script>
+    <title>Student Database</title>
+
+    <style>
+        table {
+            width: 400px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        table.t01 tr:nth-child(even) {
+            background-color: #eee;
+        }
+
+        table.t01 tr:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        table.t01 th {
+            background-color: black;
+            color: white;
+        }
+    </style>
+
+    <script>
+        function report(msg, id, list) {
+            out.innerHTML = ""; msg += " ";
+            out.appendChild(document.createTextNode(msg));
+            let n1;
+            if (id) {
+                n1 = document.createElement("span");
+                n1.appendChild(document.createTextNode(id));
+                n1.classList.add("link");
+                out.appendChild(n1); msg += id;
+                //n1.addEventListener("click", doClick);
+            }
+            if (list) {
+                let n2 = document.createElement("span");
+                n2.appendChild(document.createTextNode(""));
+                n2.innerHTML += list.join("<br>");
+                n2.classList.add("course");
+                if (n1) n1.appendChild(n2);
+            }
+            console.log(msg);
+        }
+
+        function randomStd() {
+            let keys = Array.from(data.students.keys());
+            let b = data.students.get(keys[Math.floor(Math.random() * keys.length)]);
+            report("Random: " + b.name, b.id);
+        }
+        
+        function getStudentNumberGPA() {
+            let count = 0;
+            let gpa = document.getElementById("gpaInput").value;
+            let result;
+            for (let student of data.students.values()) {
+                let result = Number(student.gpa);
+                if (result > gpa) {
+                    count++;
+                }
+            }
+            report("Number of Students Above a Given GPA: " + count);
+        }
+
+        function coursesOfStudent() {
+            let id = document.getElementById("sIdInput").value;
+            let std = data.students.get(id);
+            report(id + " Courses : " + std.courses);
+        }
+
+        function examSchedule() {
+            document.getElementById("examSchedule").innerHTML = '<tr><th>Code</th><th>Time</th><th>Date</th><th>Classes</th></tr>'
+            let std = document.getElementById("sIdInput").value;
+            for (let student of data.students.values()) {
+                if (student.id == std) {
+                    document.getElementById("examSch").innerHTML ='<b>Exam Schedule of </b>' + student.id + " - " + student.name;
+                    for (let course of student.courses) {
+                        for (let crs of data.courses.values()) {
+                            if (course == crs.id) {
+                                document.getElementById("examSchedule").innerHTML += '<tr id="' + crs.toString() + '"><td>' + crs.id + '</td>' + '<td>' + crs.time + '</td>' + '<td>' + crs.date + '</td>' + '<td>' + crs.classes + '</td></tr>'       
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        function studentListGivenCourse() {
+            let stdList = [];
+            let searchCourse = document.getElementById("courseInput").value;
+            for (let std of data.students.values()) {
+                for (let course of std.courses) {
+                    if (course == searchCourse) {
+                        stdList.push(std.name);
+                    }
+                }
+            }
+            let count = 1;
+            out.innerHTML = "";
+            for (let std of stdList) {
+                out.innerHTML += count+". "+std+"<br>";
+                count++;
+            }
+            //report("Student List Of [" + searchCourse + "] : " + stdList);
+        }
+
+        function courseListGivenExamRoom() {
+            let courseList = [];
+            let room = document.getElementById("classInput").value;
+            for (let course of data.courses.values()) {
+                for (let cls of course.classes) {
+                    if (cls == room) {
+                        courseList.push(course.id);
+                    }
+                }
+            }
+            report("Course List Of [" + room + "] : " + courseList);
+            return courseList;
+        }
+
+        function numberOfCoursesGivenClass() {
+            let courses = courseListGivenExamRoom();
+            let room = document.getElementById("classInput").value;
+            report("Number Of Courses [" + room + "] : " + courses.length);
+        }
+
+        function courseCoincide() {
+            let count = 0;
+            let searchCourse = document.getElementById("courseInput").value;
+            for (let course of data.courses.values()) {
+                if (course.id == searchCourse) {
+                    for (let crs of data.courses.values()) {
+                        if (crs.date == course.date && crs.time == course.time && crs.id != course.id) {
+                            count++;
+                        }
+                    }
+                }
+            }
+            report("Number of Courses Coincide With [" + searchCourse + "] : " + count);
+        }
+    </script>
+</head>
+<body>
+    <h2 id=title>Student Database</h2>
+
+    <hr>
+
+    <p><b>Student ID:</b>
+        <input type=number id=sIdInput style="margin-left: 10px; margin-right: 10px;">
+        <b>Course ID:</b>
+        <input type=text id=courseInput style="margin-left: 14px">
+    </p>
+    <p><b>GPA:</b>
+        <input type=number id=gpaInput style="margin-left: 52px; margin-right: 10px;">
+        <b>Class:</b>
+        <input type=text id=classInput style="margin-left: 48px">
+    </p>
+
+    <hr>
+
+    <p><b>A Random Student:</b> <button onClick='randomStd()'
+            style="width: 100px ; height: 26px ; margin-left:180px;font-weight: bold">Random</button></p>
+    <p><b>Number of Students Above a Given GPA:</b> <button onClick='getStudentNumberGPA()'
+            style="width: 100px ; height: 26px; margin-left: 33px; font-weight: bold">Get</button></p>
+    <p><b>Courses Taken By a Given Student:</b> <button onClick='coursesOfStudent()'
+            style="width: 100px ; height: 26px; margin-left: 73px; font-weight: bold">Get</button></p>
+    <p><b>Exam Schedule For a Given Student:</b> <button onClick='examSchedule()'
+            style="width: 100px ; height: 26px; margin-left: 62px; font-weight: bold">Get</button></p>
+    <p><b>Student List Taking a Given Course:</b> <button onClick='studentListGivenCourse()'
+            style="width: 100px ; height: 26px; margin-left: 65px; font-weight: bold">Get</button></p>
+    <p><b>Course List For a Given Exam Room:</b> <button onClick='courseListGivenExamRoom()'
+            style="width: 100px ; height: 26px; margin-left: 57px; font-weight: bold">Get</button></p>
+    <p><b>Total Number of Courses In a Given Room: </b> <button onClick='numberOfCoursesGivenClass()'
+            style="width: 100px ; height: 26px; margin-left: 18px; font-weight: bold">Get</button></p>
+    <p><b>Number of Courses Coincide With Given Course: </b> <button onClick='courseCoincide()'
+            style="width: 100px ; height: 26px; margin-left: 18px; font-weight: bold">Get</button></p>
+    
+    <hr>
+
+    <b style="font-size: 18px;">RESULT:</b>
+    <p id=out style="font-size: 16px;"></p>
+    <hr>
+    <p id="examSch" style="font-size: 18px;">
+        <b>Exam Schedule</b>
+        <table id="examSchedule" class="t01"></table>
+    </p>
+    <hr>
+    <script>
+        data = new Database();
+    </script>
+</body>
+</html>
