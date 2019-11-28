@@ -18,6 +18,8 @@
 
 [CW7 - Array vs Map](./Classworks/CW7/Array_vs_Map.html)
 
+[CW8 - Document Object Model](./Classworks/CW8/Document_Object_Model.html)
+
 
 ## *HOMEWORKS*
 
