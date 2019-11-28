@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <title>Ömer Faruk KAAN</title>
     <link rel="manifest" href="manifest.json">
-    <link rel="icon" sizes="192x192" href="images/icon.PNG">
+    <link rel="icon" sizes="192x192" href="images/icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker
-                .register('sw.js')
+                .register('https://omerfarukkaan.github.io/advancedProgramming/sw.js')
                 .then((reg) => { console.log('SW Registered', reg) })
                 .catch(console.log)
         }
