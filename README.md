@@ -20,6 +20,8 @@
 
 [CW8 - Document Object Model](./Classworks/CW8/Document_Object_Model.html)
 
+[CW9 - GitHub Users](./Classworks/CW9/GitHub_Users.html)
+
 
 ## *HOMEWORKS*
 

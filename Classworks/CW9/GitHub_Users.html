@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" sizes="192x192" href="https://omerfarukkaan.github.io/advancedProgramming/images/icon.png">
+    <title>GitHub Users</title>
+
+  <style>
+    body {
+        max-width: 440px;
+    }
+    img {
+      padding-right: 12px; 
+      width: 256px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2 id="title">GitHub Users</h2>
+<input type="text" id="usr" value="maeyler" onchange="readUser()">
+<p id="out">
+<p>Ref: <a href="https://developer.github.com/v3/#rate-limiting" target="NewTab">GitHub Developer</a>
+</p>
+
+<script>
+"use strict";
+const URL = "https://api.github.com/users/"
+function error(t) {
+    out.style.color = 'red'
+    out.innerText = t; console.log(t)
+}
+function listRepos(b) {
+    if (b.length) 
+      out.innerHTML += 
+        b.map(x => x.login).join(", ")
+}
+function userData(u) {
+    if (!u || !u.login) {
+      error(usr.value+' not found')
+      return
+    } 
+    //u.login is the same as usr.value
+    out.style.color = ''
+    out.innerHTML = ''
+    //start with a tiny image
+    let i = document.createElement("img")
+    i.src = u.avatar_url
+    out.appendChild(i);
+    //add name and location
+    let s = (u.name? u.name : u.login)
+    let name = document.createElement("h1");
+    name.appendChild(document.createTextNode(s));
+    out.appendChild(name);
+    let username = document.createElement("h3");
+    username.appendChild(document.createTextNode(u.login))
+    out.appendChild(username)
+    if (u.company) {
+      let company = document.createElement("li");
+      company.appendChild(document.createTextNode(u.company));
+      out.appendChild(company);
+    }
+    let location = document.createElement("li");
+    location.appendChild(document.createTextNode(u.location));
+    out.appendChild(location);
+    if (u.email) {
+      let email = document.createElement("li");
+      company.appendChild(document.createTextNode(u.email));
+      out.appendChild(email);
+    }
+    let blog = document.createElement("li");
+    let link = blog.appendChild(document.createElement("a"));
+    let txt = document.createTextNode(u.blog);
+    link.href = ""+u.blog;
+    link.innerText = u.blog;
+    out.appendChild(blog);
+    //add repo count
+    let p = u.followers+" followers"
+    out.innerHTML += "<br>"+p+"<br>"
+    fetch(URL+u.login+"/followers")
+      .then(r => r.json()) 
+      .then(listRepos).catch(error)
+}
+function readUser() {
+    fetch(URL+usr.value)
+      .then(r => r.ok? r.json() : null) 
+      .then(userData).catch(error)
+}
+
+    title.innerText = document.title
+    out.innerText = "Reading data"
+    readUser()
+</script>
+</body></html>
