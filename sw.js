@@ -3,7 +3,7 @@ const FILES = ['/advancedProgramming/Classworks/CW1/PieChart.png','/advancedProg
 '/advancedProgramming/Classworks/CW3/c4_data.html', '/advancedProgramming/Classworks/CW4/Courses.html', '/advancedProgramming/Classworks/CW5/Eloquent_JS.html'
 ,'/advancedProgramming/Classworks/CW6/File_Operations.html', '/advancedProgramming/Classworks/CW7/Array_vs_Map.html', '/advancedProgramming/Classworks/CW8/Document_Object_Model.html', 
 '/advancedProgramming/Homeworks/HW1/Poisson_Table.html',
-'/advancedProgramming/Homeworks/HW2/Database.html','/advancedProgramming/Homeworks/HW3/JS_Animations.html']
+'/advancedProgramming/Homeworks/HW2/Database.html','/advancedProgramming/Homeworks/HW3/JS_Animations.html','/advancedProgramming/Project/carGame.html']
 
 function installCB(e) {
   e.waitUntil(

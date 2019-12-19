@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Car Game</title>
+    
+    <style>
+        body{
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            background: rgba(0, 0, 255, .4);
+            font-family: 'Josefin-Sans', sans-serif;
+            background-position: center;
+        }
+        #score-div{
+            position: absolute;
+            margin-top: 20%;
+            margin-left: 10%;
+            font-size: 25px;
+            background: white;
+            color: #454545;
+            padding: 15px;
+            -webkit-box-shadow: 4px 4px 4px 1px #808080;
+            box-shadow: 4px 4px 4px 1px #808080;
+        }
+        #score-div p{
+            height: 20px;
+        }
+        #container{
+            width: 40%;
+            height: 100vh;
+            left: 35%;
+            background: #333;
+            overflow: hidden;
+            position: relative;
+        }
+        .line{
+            width: 4%;
+            height: 30vh;
+            background: rgba(255, 255, 255, .8);
+            position: absolute;
+            margin-left: 48%;
+        }
+        #line-1{
+            top: 150px;
+        }
+        #line-2{
+            top: 150px;
+        }
+        #line-3{
+            top: 150px;
+        }
+        .car{
+            position: absolute;
+            widows: 40px;
+            height: 60px;
+            border-radius: 5px;
+            -webkit-box-shadow: 3px 3px 3px blink;
+            box-shadow: 3px 3px 3px blink;
+        }
+        img{
+            width: 20%;
+            height: 200%;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <div id="score-div">
+        <span>score :</span>
+        <span id="score">0</span>
+    </div>
+    <div id="container">
+        <div class="line" id="line-1"></div>
+        <div class="line" id="line-2"></div>
+        <div class="line" id="line-3"></div>
+        <div class="car">
+            <img src="../Project/mercedes-car.png">
+        </div>
+        <div id="restart-div">
+            <button id="restart">Click To Restart</button>
+        </div>
+    </div>
+    
+</body>
+</html>

@@ -30,3 +30,8 @@
 [HW2 - Student Database](./Homeworks/HW2/Database.html)
 
 [HW3 - JavaScript Animations](./Homeworks/HW3/JS_Animations.html)
+
+
+## *Term Project*
+
+[Simple Car Game](./Project/carGame.html)
