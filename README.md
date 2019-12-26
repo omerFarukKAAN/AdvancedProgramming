@@ -34,4 +34,4 @@
 
 ## *Term Project*
 
-[Simple Car Game](./Project/index.html)
+[Simple Car Game](./Project/carGame.html)
