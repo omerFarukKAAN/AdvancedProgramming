@@ -1,4 +1,4 @@
-# advancedProgramming
+# Advanced Programming Techniques
 
 ## *CLASSWORKS*
 
